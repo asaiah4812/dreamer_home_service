@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+{% include 'includes/navbar.html' %}
+
+<header class="flex flex-col text-center items-center mx-auto gap-6 my-5">
+      <h1 class="text-5xl font-bold">
+        Find Home <span class="text-indigo-500">Service/Repair</span> <br />
+        Near You
+      </h1>
+      <h3 class="text-2xl text-slate-400">
+        Explore Best Home Service & Repair near You
+      </h3>
+      <!-- Search Bar -->
+      <form method="get" class="flex items-center gap-2">
+        <input
+          class="border p-3 rounded-full md:w-[400px]"
+          type="text"
+          name="title"
+          placeholder="Search..."
+
+        />
+        <button title="search" class="p-3 bg-indigo-500 rounded-lg"
+          ><i class="fa-solid fa-magnifying-glass text-white"></i
+        ></button>
+      </form>
+    </header>
+    <section class="flex flex-col items-center w-[100%] mt-10 mx-auto">
+      <div
+        class="flex items-center flex-wrap gap-4 mx-auto hover:[&>div>bg-purple-500] mx-auto"
+      >
+      {% for category in categories %}
+        <div
+          class="flex flex-col items-center wrap bg-purple-100 gap-3 py-3 px-4 rounded-md"
+        >
+          <img class="w-[60px]" src="{{ category.icon.url }}" alt="">
+          <span>{{category.name}}</span>
+        </div>
+
+        {% endfor %}
+      </div>
+    </section>
+    <section class="w-[80%] mx-auto my-4">
+      <h2 class="font-bold text-3xl text-center py-3">Popular Business</h2>
+      <div class="grid lg:grid-cols-4 gap-4 mt-3 md:grid-cols-3">
+        {% for service in services %}
+        <div
+          class="flex flex-col items-start gap-2 bg-slate-100 p-2 hover:shadow-md overflow-hidden"
+        >
+        <div class="w-full overflow-hidden">
+          <img class="w-full object-cover h-[200px] hover:scale-110 duration-200" src="{{ service.image1.url }}" alt="" />
+        </div>
+          <div class="flex items-center gap-2 px-2">
+            {% for category in service.category.all %}
+            <a href="{% url 'book:category' category.slug %}" class="bg-violet-300 rounded-md p-1">{{category.name}}</a>
+            {% endfor %}
+          </div>
+          <h2 class="font-bold text-lg px-2">{{service.title}}</h2>
+          <a href="{% url 'userprofile' service.publisher.username %}">{{service.publisher.first_name}} {{service.publisher.last_name}}</a>
+          <span><strike>N</strike>{{ service.price }} / hour</span>
+          <a
+          href="{{service.get_absolute_url}}"
+            class="py-2 px-4 text-white bg-purple-500 rounded-md"
+            title="booking"
+          >
+            Book Now
+          </a>
+        </div>
+        {% empty %}
+        <h1 class="text-2xl text-center">No such Service title...</h1>
+        {% endfor %}
+      </div>
+    </section>
+
+{% endblock %}

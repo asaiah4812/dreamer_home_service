@@ -1,0 +1,32 @@
+{% load static %}
+
+<nav
+      class="flex items-center w-full justify-between md:w-[85%] py-4 border-b mx-auto"
+    >
+      <a href="{% url 'book:home' %}" class="text-2xl font-bold">Logo</a>
+      <div class="md:flex items-center gap-3 sm:hidden">
+        <a href="{% url 'book:home' %}" class="hover:border-b border-violet-400">Home</a>
+        <a href="{% url 'book:services' %}" class="hover:border-b border-violet-400"
+          >Services</a
+        >
+        <a href="#" class="hover:border-b border-violet-400">About Us</a>
+      </div>
+      {% if user.is_authenticated %}
+        <div x-data="{ showMenu: false }" class="bg-slate-200  rounded-full hover:bg-slate-300 w-[60px] relative p-1" >
+        <a href="#" @click="showMenu = !showMenu" @click.away="showMenu = false" class="text-white"><img class="w-full rounded-full" src="{{user.profile.avatar}}" alt=""></a>
+        <div class="absolute right-0 gap-2 w-[140px] bg-gray-100 flex flex-col p-4 rounded-md" x-cloak x-show="showMenu"
+        x-transition:enter="duration-300 ease-out"
+        x-transition:enter-start="opacity-0 -transition-y-5 scale-90"
+        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+        >
+          <a href="{% url 'profile' %}" class="hover:bg-slate-200 p-2 rounded-md block">Profile</a>
+          <a href="{% url 'profile-edit' %}" class="hover:bg-slate-200 p-2 rounded-md block">Edit Profile</a>
+          <a href="{% url 'logout' %}" class="hover:bg-slate-200 p-2 rounded-md block">Logout</a>
+        </div>
+      </div>
+      {% else %}
+      <div class="bg-purple-500 py-2 px-4 rounded hover:bg-purple-400">
+        <a href="{% url 'login' %}" class="text-white">Login/SignUp</a>
+      </div>
+      {% endif %}
+    </nav>

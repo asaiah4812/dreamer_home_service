@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+<!-- {% load widget_tweaks %} -->
+
+{% load static %}
+
+{% block title %}SignUp Page{% endblock %}
+
+{% block content %}
+
+   <section class="h-screen w-full md:w-[50%] mx-auto flex items-center flex-col justify-center">
+    <h1 class="text-4xl font-bold mb-4">SignUp page</h1>
+    <form method="POST" class="md:w-[50%] sm:w-full bg-slate-100 shadow-lg flex flex-col items-start gap-3 py-8 px-4 rounded-md">
+        {% csrf_token %}
+        <input class="w-full py-3 px-2 outline-0" type="text" name="username" placeholder="Enter username">
+        <input class="w-full py-3 px-2 outline-0" type="email" name="email" placeholder="Enter Email">
+        <input class="w-full py-3 px-2 outline-0" type="password" name="password1" placeholder="Enter password">
+        <input class="w-full py-3 px-2 outline-0" type="password" name="password2" placeholder="Confirm password">
+        <p>already have an account login <a href="{% url 'login' %}" class="text-blue-500">!here</a></p>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded3">Submit</button>
+    </form>
+   </section>
+
+{% endblock %}

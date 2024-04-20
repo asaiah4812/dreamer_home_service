@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} Service Detail Page {% endblock %}
+
+{% block content %}
+
+{% include 'includes/navbar.html' %}
+
+
+<section class="grid grid-cols-5 mt-6 gap-2 w-full md:w-[80%] mx-auto" x-data="{ showModal: false}">
+      <section class="fixed h-screen top-0 bottom-0 right-0 left-0 backdrop-filter backdrop-blur-sm flex items-center justify-center"
+       x-cloak x-show="showModal"
+       x-transition:enter="duration-300 ease-out"
+        x-transition:enter-start="opacity-0 -transition-y-5 scale-90"
+        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+       >
+        <form method="POST" class="bg-slate-200 rounded-md relative p-4">
+        <span class="absolute top-0 right-0 p-3 cursor-pointer"  @click="showModal = false"><i class="fa-solid fa-circle-xmark text-2xl"></i></span>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="text-white py-2 px-4 bg-blue-400" type="submit">Book</button>
+      </form>
+      </section>
+      <div class="col-span-3">
+        <div class="flex items-start gap-4">
+          <img
+            src="{{service.image1.url}}"
+            class="w-[250px] rounded-md"
+            alt=""
+          />
+          <div class="flex flex-col items-start gap-2">
+            <div class="flex items-center gap-2">
+              {% for tag in service.category.all %}
+              <a href="" class="bg-violet-300 rounded-md p-1">{{tag.name}}</a>
+              {% endfor %}
+            </div>
+            <h1>{{service.title}}</h1>
+            <span class="flex items-center gap-2"
+              ><i class="fa-solid fa-location-dot"></i>{{service.address}}</span
+            >
+            <span class="flex items-center gap-2"
+              ><i class="fa-solid fa-envelope"></i
+              >{{service.publisher.email}}</span
+            >
+            {% if request.user == service.publisher %}
+            <a href="{% url 'book:bookings' %}" class="px-3 py-2 bg-violet-500 rounded-lg text-white">View Books</a>
+            {% endif %}
+          </div>
+        </div>
+          <div class="mt-5 flex flex-col gap-4">
+            <h2 class="text-3xl font-bold">Description</h2>
+            <p>
+              {{service.description}}
+            </p>
+          </div>
+          <div class="mt-5 flex flex-col items-start">
+            <h1 class="text-3xl font-medium">Our Gallery</h1>
+              <div class="flex items-center gap-4 my-4">
+                <div class="w-[250px]">
+                    <img class="w-full" src="{{service.image1.url}}" alt="">
+                </div>
+                <div class="w-[250px]">
+                    <img class="w-full" src="{{service.image2.url}}" alt="">
+                </div>
+                <div class="w-[250px]">
+                    <img class="w-full" src="{{service.image3.url}}" alt="">
+                </div>
+                <div class="w-[250px]">
+                    <img class="w-full" src="{{service.image2.url}}" alt="">
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-span-2 flex gap-3 w-full flex items-end flex-col">
+        <button title="share" class="px-3 py-2 bg-violet-500 rounded-lg">
+          <i class="text-white fa-solid fa-share-from-square"></i>
+        </button>
+        {% if service.publisher.profile.realname %}
+        <a href="{% url 'userprofile' service.publisher.username %}"><i class="fa-solid fa-user"></i> {{service.publisher.profile.realname}} </a>
+        {% else %}
+        <a href="{% url 'userprofile' service.publisher.username %}"><i class="fa-solid fa-user"></i> Don have a name</a>
+        {% endif %}
+        <span
+          ><i class="fa-regular fa-clock"></i> Available {{service.available_start}} TO 10:00PM</span
+        >
+        <div class="flex flex-col gap-1">
+          <h2 class="px-5 py-2 bg-violet-500 text-white text-center rounded-lg cursor-pointer" @click="showModal = !showModal"><i class="fa-solid fa-book-bookmark"></i> Book Appointment</h2>
+          <h3 class="font-bold text-lg mt-3">Similar Business</h3>
+          <div class="flex flex-col items-start gap-5 mt-5">
+            {% for ser in services %}
+            <div class="flex items-start gap-2 border p-1 hover:shadow-md w-full">
+              <img src="{{ser.image1.url}}" class="w-[200px]" alt="{{ser.title}}" />
+              <div>
+                <h2>{{ser.title}}</h2>
+                <p class="text-violet-600">{{ser.publisher}}</p>
+                <span>{{ser.address}}</span>
+                <p class="text-black">{{ser.price}}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endblock %}

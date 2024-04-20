@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% load static %}
+
+{% block title %}Login Page{% endblock %}
+
+
+{% block content %}
+{% include 'includes/navbar.html' %}
+
+ <section class="sm:w-full md:w-[80%] lg:w-[60%] mx-auto flex flex-col gap-4 px-2 items-center" x-data="{showModal: false}">
+      <div class="flex flex-col items-center border mt-6 gap-2 py-2 w-full">
+        <img class="w-[150px]  rounded-full" src="{{user.profile.avatar}}" alt="" />
+        <span class="text-slate-400">@{{profile.user.username}}</span>
+        <h1 class="text-2xl font-medium">{{profile.fullname}}</h1>
+        {% if profile.location %}
+        <span class="text-slate-600"
+          ><i class="fa-solid fa-location-dot"></i> {{profile.location.name}}</span
+        >
+        {% else %}
+        <span class="text-slate-600"
+          ><i class="fa-solid fa-location-dot"></i>  No location provided. </span
+        >
+        {% endif %}
+      </div>
+      <div>
+        <p>
+          {{profile.bio}}
+        </p>
+      </div>
+      {% if request.user == profile.user %}
+      <button type="submit" class="text-white py-2 px-4 bg-blue-400" @click="showModal = !showModal">Delete Profile</button>
+      {% endif %}
+      <div>
+            <h1 class="text-3xl font-medium">Your Popular Services</h1>
+          <div class="grid lg:grid-cols-4 gap-4 mt-3 md:grid-cols-3">
+            <div
+              class="flex flex-col items-start gap-2 bg-slate-100 p-2 hover:shadow-md"
+            >
+              <img class="w-full" src="{% static '/images/cleaning.jpg' %}" alt="" />
+              <a href="" class="bg-violet-300 rounded-full p-2">Cleaning</a>
+              <h2 class="font-bold text-lg">House Cleaning</h2>
+              <p>Jenny Wilson</p>
+              <span>$8 / hour</span>
+              <button
+                class="py-2 px-4 text-white bg-purple-500 rounded-md"
+                title="booking"
+              >
+                Book Now
+              </button>
+            </div>
+            <div
+              class="flex flex-col items-start gap-2 bg-slate-100 p-2 hover:shadow-md"
+            >
+              <img class="w-full" src="{% static '/images/cleaning.jpg' %}" alt="" />
+              <a href="" class="bg-violet-300 rounded-full p-2">Cleaning</a>
+              <h2 class="font-bold text-lg">House Cleaning</h2>
+              <p>Jenny Wilson</p>
+              <span>$8 / hour</span>
+              <button
+                class="py-2 px-4 text-white bg-purple-500 rounded-md"
+                title="booking"
+              >
+                Book Now
+              </button>
+            </div>
+            <div
+              class="flex flex-col items-start gap-2 bg-slate-100 p-2 hover:shadow-md"
+            >
+              <img class="w-full" src="{% static '/images/cleaning.jpg' %}" alt="" />
+              <a href="" class="bg-violet-300 rounded-full p-2">Cleaning</a>
+              <h2 class="font-bold text-lg">House Cleaning</h2>
+              <p>Jenny Wilson</p>
+              <span>$8 / hour</span>
+              <button
+                class="py-2 px-4 text-white bg-purple-500 rounded-md"
+                title="booking"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+          <button class=""></button>
+          <section class="fixed h-screen top-0 bottom-0 right-0 left-0 backdrop-filter backdrop-blur-sm flex items-center justify-center"
+       x-cloak x-show="showModal"
+       x-transition:enter="duration-300 ease-out"
+        x-transition:enter-start="opacity-0 -transition-y-5 scale-90"
+        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+       >
+        <form method="POST" class="flex items-start justify-center flex-col bg-slate-200 rounded-md relative p-6">
+        <span class="absolute top-0 right-0 p-3 cursor-pointer"  @click="showModal = false"><i class="fa-solid fa-circle-xmark text-2xl"></i></span>
+        {% csrf_token %}
+        <p class="mt-4">Are you sure you want to delete your Profile?</p>
+        <button class="text-white py-2 px-4 bg-blue-400" type="submit">delete</button>
+      </form>
+      </section>
+      </div> 
+    </section>
+
+{% endblock %}
