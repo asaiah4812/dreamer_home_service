@@ -1,7 +1,7 @@
 {% load static %}
 
 <nav
-      class="flex items-center w-full justify-between md:w-[85%] py-4 border-b mx-auto"
+      class="flex items-center w-full justify-between md:w-[85%] py-4 border-b mx-auto z-50"
     >
       <a href="{% url 'book:home' %}" class="text-2xl font-bold">Logo</a>
       <div class="md:flex items-center gap-3 sm:hidden">
@@ -12,7 +12,7 @@
         <a href="#" class="hover:border-b border-violet-400">About Us</a>
       </div>
       {% if user.is_authenticated %}
-        <div x-data="{ showMenu: false }" class="bg-slate-200  rounded-full hover:bg-slate-300 w-[60px] relative p-1" >
+        <div x-data="{ showMenu: false }" class="bg-slate-200  rounded-full hover:bg-slate-300 w-[60px] relative p-1 z-50" >
         <a href="#" @click="showMenu = !showMenu" @click.away="showMenu = false" class="text-white"><img class="w-full rounded-full" src="{{user.profile.avatar}}" alt=""></a>
         <div class="absolute right-0 gap-2 w-[140px] bg-gray-100 flex flex-col p-4 rounded-md" x-cloak x-show="showMenu"
         x-transition:enter="duration-300 ease-out"
