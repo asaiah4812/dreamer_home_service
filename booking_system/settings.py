@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import os
+
 from environ import Env
 import dj_database_url
 
@@ -154,13 +156,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 STATICFILE_DIRS = BASE_DIR/'static'
-STATIC_ROOT = BASE_DIR/'staticfiles' 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 else:
-    MEDIA_ROOT = BASE_DIR/'media'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 CLOUDINARY_STORAGE = {
