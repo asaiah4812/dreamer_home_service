@@ -36,9 +36,9 @@ else:
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'dreamer-home-service.railway.internal']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'dreamer-home-service.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://dreamer-home-service.railway.internal']
+CSRF_TRUSTED_ORIGINS = ['https://dreamer-home-service.up.railway.app']
 
 INTERNAL_IPS = {
     '127.0.0.1',
