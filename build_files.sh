@@ -1,4 +1,5 @@
-# build_files.sh
+# Use pyenv to install dependencies
+pyenv exec pip install -r requirements.txt
 
-pip install -r requirements.txt
-python3.11 manage.py collectstatic
+# Use pyenv to run manage.py collectstatic
+pyenv exec python manage.py collectstatic
