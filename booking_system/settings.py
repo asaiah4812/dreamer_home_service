@@ -38,7 +38,18 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'dreamer-home-service.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://dreamer-home-service.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://dreamer-home-service.up.railway.app', 'http://']
+
+# HTTPS Settings
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
+
+# HSTS Settings
+
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 INTERNAL_IPS = {
     '127.0.0.1',
