@@ -1,4 +1,4 @@
 # build_files.sh
 
-python -m pip install -r requirements.txt
-python 3.11.4 manage.py collectstatic
+python -V 3.11 -m pip install -r requirements.txt
+python -V 3.11 manage.py collectstatic
