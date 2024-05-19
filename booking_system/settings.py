@@ -34,7 +34,7 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
 
-DEBUG = True
+
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'dreamerhomeservice-production.up.railway.app']
 
