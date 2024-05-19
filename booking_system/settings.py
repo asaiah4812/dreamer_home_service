@@ -38,7 +38,7 @@ else:
 
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['*']
 
 # CSRF_TRUSTED_ORIGINS = ['https://dreamerhomeservice-production.up.railway.app']
 
