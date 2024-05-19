@@ -42,10 +42,10 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app', '.now.sh']
 
 # CSRF_TRUSTED_ORIGINS = ['https://dreamerhomeservice-production.up.railway.app']
 
-INTERNAL_IPS = {
-    '127.0.0.1',
-    'localhost:8000'
-}
+# INTERNAL_IPS = {
+#     '127.0.0.1',
+#     'localhost:8000'
+# }
 
 
 # Application definition
