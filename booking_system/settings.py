@@ -154,7 +154,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 STATICFILE_DIRS = BASE_DIR/'static'
-STATIC_ROOT = BASE_DIR/'staticfiles'
+STATIC_ROOT = BASE_DIR/'staticfiles' 
 
 
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
