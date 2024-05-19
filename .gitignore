@@ -1,9 +1,6 @@
 env/
 media/
-static/
 node/
 __pycahe__/
 .env
 db.sqlite3
-Procfile
-runtime
