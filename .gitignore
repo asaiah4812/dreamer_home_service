@@ -6,4 +6,4 @@ __pycahe__/
 .env
 db.sqlite3
 Procfile
-runtime.txt
+runtime
