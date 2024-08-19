@@ -36,9 +36,9 @@ DEBUG = False
 
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'dreamer-home-service.up.railway.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', ".vercel.app", ".now.sh"]
 
-CSRF_TRUSTED_ORIGINS = ['https://dreamer-home-service.up.railway.app', 'http://']
+CSRF_TRUSTED_ORIGINS = ['https://dreamer-home-service.vercel.app', 'http://']
 
 # HTTPS Settings
 SESSION_COOKIE_SECURE = True
