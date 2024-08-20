@@ -120,15 +120,15 @@ WSGI_APPLICATION = 'booking_system.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ["POSTGRES_DB"],
-        "USER": os.environ["POSTGRES_USER"],
-        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
-        "HOST": os.environ["POSTGRES_HOST"],
-        "PORT": os.environ["POSTGRES_PORT"],
+        "NAME": os.environ["NAME"],
+        "USER": os.environ["USER"],
+        "PASSWORD": os.environ["PASSWORD"],
+        "HOST": os.environ["HOST"],
+        "PORT": os.environ["PORT"],
     }
 }
 
-I commented this out
+# I commented this out
 # POSTGRES_LOCALLY = True
 # if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
 #     DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
@@ -185,11 +185,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': env('CLOUD_API_SECRET')
 }
 
-# STORAGES = {
-#     'staticfiles': {
-#         'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
-#     }
-# }
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
